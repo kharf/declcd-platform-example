@@ -16,6 +16,14 @@ prometheusStack: schema.#HelmRelease & {
 		version: "58.2.1"
 	}
 	values: {
-		prometheus: prometheusSpec: serviceMonitorSelectorNilUsesHelmValues: false
+		prometheus: prometheusSpec: {
+			serviceMonitorSelectorNilUsesHelmValues: false
+			retention:                               "30d"
+			scrapeInterval:                          "30s"
+			storageSpec: volumeClaimTemplate: spec: {
+				accessModes: ["ReadWriteOnce"]
+				resources: requests: storage: 100Gi
+			}
+		}
 	}
 }

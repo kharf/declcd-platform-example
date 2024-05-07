@@ -2,8 +2,8 @@ package core
 
 import (
 	"github.com/kharf/declcd/schema"
-	corev1 "github.com/kharf/cuepkgs/modules/k8s/k8s.io/api/core/v1"
-	appsv1 "github.com/kharf/cuepkgs/modules/k8s/k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
+	appsv1 "k8s.io/api/apps/v1"
 )
 
 #Namespace: schema.#Manifest & {
