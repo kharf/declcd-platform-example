@@ -1,11 +1,11 @@
 package prometheus
 
 import (
-	"github.com/kharf/declcd/schema"
+	"github.com/kharf/declcd/schema/component"
 	"github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
 )
 
-#PrometheusRule: schema.#Manifest & {
+#PrometheusRule: component.#Manifest & {
 	#Name:      string
 	#Namespace: string
 	content: v1.#PrometheusRule & {

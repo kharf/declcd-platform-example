@@ -1,24 +1,26 @@
 package declcd
 
 import (
-	"github.com/kharf/declcd/schema"
+	"github.com/kharf/declcd/schema/component"
 )
 
-_projectName: "dev"
 
-project: schema.#Manifest & {
-	dependencies: [crd.id]
+platform: component.#Manifest & {
+	dependencies: [
+		crd.id,
+		ns.id,
+	]
 	content: {
-		apiVersion: "gitops.declcd.io/v1"
+		apiVersion: "gitops.declcd.io/v1beta1"
 		kind:       "GitOpsProject"
 		metadata: {
-			name:      _projectName
+			name:      "platform"
 			namespace: "declcd-system"
+			labels: _primaryLabels
 		}
 		spec: {
 			branch:              "main"
 			pullIntervalSeconds: 30
-			name:                _projectName
 			suspend:             false
 			url:                 "git@github.com:kharf/declcd-platform-example.git"
 		}

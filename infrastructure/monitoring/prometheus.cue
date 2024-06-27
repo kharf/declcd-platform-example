@@ -1,10 +1,10 @@
 package monitoring
 
 import (
-	"github.com/kharf/declcd/schema"
+	"github.com/kharf/declcd/schema/component"
 )
 
-prometheusStack: schema.#HelmRelease & {
+prometheusStack: component.#HelmRelease & {
 	dependencies: [
 		ns.id,
 	]

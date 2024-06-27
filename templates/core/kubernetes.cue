@@ -1,12 +1,12 @@
 package core
 
 import (
-	"github.com/kharf/declcd/schema"
+	"github.com/kharf/declcd/schema/component"
 	corev1 "k8s.io/api/core/v1"
 	appsv1 "k8s.io/api/apps/v1"
 )
 
-#Namespace: schema.#Manifest & {
+#Namespace: component.#Manifest & {
 	#Name: string
 	content: corev1.#Namespace & {
 		apiVersion: string | *"v1"
@@ -15,7 +15,7 @@ import (
 	}
 }
 
-#Service: schema.#Manifest & {
+#Service: component.#Manifest & {
 	#Name:      string
 	#Namespace: string
 	content: corev1.#Service & {
@@ -28,7 +28,7 @@ import (
 	}
 }
 
-#Deployment: schema.#Manifest & {
+#Deployment: component.#Manifest & {
 	#Name:      string
 	#Namespace: string
 	content: appsv1.#Deployment & {
