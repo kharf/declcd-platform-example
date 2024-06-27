@@ -22,7 +22,7 @@ prometheusStack: component.#HelmRelease & {
 			scrapeInterval:                          "30s"
 			storageSpec: volumeClaimTemplate: spec: {
 				accessModes: ["ReadWriteOnce"]
-				resources: requests: storage: 100Gi
+				resources: requests: storage: "500Mi"
 			}
 		}
 	}
