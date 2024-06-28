@@ -6,7 +6,7 @@ import (
 
 _primaryLabels: {
 	"\(_controlPlaneKey)": "project-controller-primary"
-	"\(_shardKey)":        "primary"
+	"\(_shardKey)":   "primary"
 }
 
 primaryServiceAccount: component.#Manifest & {
@@ -19,6 +19,34 @@ primaryServiceAccount: component.#Manifest & {
 			namespace: ns.content.metadata.name
 			labels:    _primaryLabels
 		}
+	}
+}
+
+primaryClusteRoleBinding: component.#Manifest & {
+	dependencies: [
+		ns.id,
+		clusterRole.id,
+		primaryServiceAccount.id,
+	]
+	content: {
+		apiVersion: "rbac.authorization.k8s.io/v1"
+		kind:       "ClusterRoleBinding"
+		metadata: {
+			name:   "project-controller-primary"
+			labels: _primaryLabels
+		}
+		roleRef: {
+			apiGroup: "rbac.authorization.k8s.io"
+			kind:     clusterRole.content.kind
+			name:     clusterRole.content.metadata.name
+		}
+		subjects: [
+			{
+				kind:      primaryServiceAccount.content.kind
+				name:      primaryServiceAccount.content.metadata.name
+				namespace: primaryServiceAccount.content.metadata.namespace
+			},
+		]
 	}
 }
 
@@ -125,7 +153,7 @@ primaryProjectControllerDeployment: component.#Manifest & {
 		}
 		spec: {
 			selector: matchLabels: _primaryLabels
-			replicas: 2
+			replicas: 1
 			template: {
 				metadata: {
 					labels: _primaryLabels
@@ -173,12 +201,12 @@ primaryProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-primary"
-							image: "ghcr.io/kharf/declcd:0.24.0-dev.2"
+							image: "ghcr.io/kharf/declcd:0.24.0-dev.4"
 							command: [
 								"/controller",
 							]
 							args: [
-								"--log-level=1",
+								"--log-level=0",
 							]
 							securityContext: {
 								allowPrivilegeEscalation: false
