@@ -4,7 +4,6 @@ import (
 	"github.com/kharf/declcd/schema/component"
 )
 
-
 ateam: component.#Manifest & {
 	dependencies: [
 		crd.id,
@@ -16,12 +15,12 @@ ateam: component.#Manifest & {
 		metadata: {
 			name:      "ateam"
 			namespace: "declcd-system"
-			labels: _ateamLabels
+			labels:    _ateamLabels
 		}
 		spec: {
 			branch:              "main"
 			pullIntervalSeconds: 30
-			suspend:             false
+			suspend:             true
 			url:                 "git@github.com:kharf/declcd-platform-team-a-example.git"
 		}
 	}
