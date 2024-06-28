@@ -40,3 +40,69 @@ import (
 		}
 	}
 }
+
+#ServiceAccount: component.#Manifest & {
+	#Name:      string
+	#Namespace: string
+	content: corev1.#Service & {
+		apiVersion: string | *"v1"
+		kind:       "ServiceAccount"
+		metadata: {
+			name:      #Name
+			namespace: #Namespace
+		}
+	}
+}
+
+#Role: component.#Manifest & {
+	#Name:      string
+	#Namespace: string
+	#Rules: [...{
+		apiGroups: [...string]
+		resources: [...string]
+		verbs: [...string]
+	}]
+	content: {
+		apiVersion: "rbac.authorization.k8s.io/v1"
+		kind:       "Role"
+		metadata: {
+			name:      #Name
+			namespace: #Namespace
+		}
+		rules: #Rules
+	}
+}
+
+#RoleBinding: component.#Manifest & {
+	#Name:      string
+	#Namespace: string
+	#Role: {
+		kind: string
+		name: string
+	}
+	#Subject: {
+		kind:      string | *"ServiceAccount"
+		name:      string
+		namespace: string
+	}
+	content: {
+		apiVersion: string | *"rbac.authorization.k8s.io/v1"
+		kind:       "RoleBinding"
+		metadata: {
+			name:      #Name
+			namespace: #Namespace
+		}
+		roleRef: {
+			apiGroup: "rbac.authorization.k8s.io"
+			kind:     #Role.kind
+			name:     #Role.name
+		}
+		subjects: [
+			{
+				kind:      #Subject.kind
+				name:      #Subject.name
+				namespace: #Subject.namespace
+			},
+		]
+	}
+}
