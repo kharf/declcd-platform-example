@@ -15,7 +15,7 @@ foundation: component.#Manifest & {
 		metadata: {
 			name:      "foundation"
 			namespace: "declcd-system"
-			labels:    _primaryLabels
+			labels: _primaryLabels
 		}
 		spec: {
 			branch:              "main"
