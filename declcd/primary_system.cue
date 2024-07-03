@@ -153,7 +153,7 @@ primaryProjectControllerDeployment: component.#Manifest & {
 		}
 		spec: {
 			selector: matchLabels: _primaryLabels
-			replicas: 0
+			replicas: 1
 			template: {
 				metadata: {
 					labels: _primaryLabels
