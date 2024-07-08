@@ -201,7 +201,7 @@ ateamProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-ateam"
-							image: "ghcr.io/kharf/declcd:0.24.2"
+							image: "ghcr.io/kharf/declcd:0.24.3"
 							command: [
 								"/controller",
 							]
