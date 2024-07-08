@@ -22,7 +22,7 @@ prometheusStack: component.#HelmRelease & {
 	chart: {
 		name:    "kube-prometheus-stack"
 		repoURL: "https://prometheus-community.github.io/helm-charts"
-		version: "59.1.0"
+		version: "61.2.0"
 	}
 	values: {
 		prometheus: prometheusSpec: {
