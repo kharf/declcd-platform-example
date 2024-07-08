@@ -201,12 +201,12 @@ primaryProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-primary"
-							image: "ghcr.io/kharf/declcd:0.24.3"
+							image: "ghcr.io/kharf/declcd:0.24.4"
 							command: [
 								"/controller",
 							]
 							args: [
-								"--log-level=1",
+								"--log-level=0",
 							]
 							securityContext: {
 								allowPrivilegeEscalation: false
