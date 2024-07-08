@@ -206,7 +206,7 @@ primaryProjectControllerDeployment: component.#Manifest & {
 								"/controller",
 							]
 							args: [
-								"--log-level=0",
+								"--log-level=1",
 							]
 							securityContext: {
 								allowPrivilegeEscalation: false
