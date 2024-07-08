@@ -24,7 +24,7 @@ prometheusStack: component.#HelmRelease & {
 		repoURL: "https://prometheus-community.github.io/helm-charts"
 		version: "61.2.0"
 	}
-	CRDs: allowUpgrade: true
+	crds: allowUpgrade: true
 	values: {
 		prometheus: prometheusSpec: {
 			serviceMonitorSelectorNilUsesHelmValues: false
