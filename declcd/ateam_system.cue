@@ -6,7 +6,7 @@ import (
 
 _ateamLabels: {
 	"\(_controlPlaneKey)": "project-controller-ateam"
-	"\(_shardKey)":   "ateam"
+	"\(_shardKey)":        "ateam"
 }
 
 ateamServiceAccount: component.#Manifest & {
@@ -201,7 +201,7 @@ ateamProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-ateam"
-							image: "ghcr.io/kharf/declcd:0.24.0-dev.4"
+							image: "ghcr.io/kharf/declcd:0.24.2"
 							command: [
 								"/controller",
 							]
