@@ -201,7 +201,7 @@ primaryProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-primary"
-							image: "ghcr.io/kharf/declcd:0.24.6-dev.2"
+							image: "ghcr.io/kharf/declcd:0.24.6-dev.3"
 							command: [
 								"/controller",
 							]
