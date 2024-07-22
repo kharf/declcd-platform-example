@@ -73,7 +73,9 @@ prometheusStack: component.#HelmRelease & {
 		core.#Deployment & {
 			#Name:      "prometheus-stack-grafana"
 			#Namespace: ns.content.metadata.name
-			spec: replicas: 2
+			spec: {
+				replicas: 2 @ignore(conflict)
+			}
 		},
 	]
 }
