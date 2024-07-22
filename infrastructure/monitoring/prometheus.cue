@@ -2,6 +2,7 @@ package monitoring
 
 import (
 	"github.com/kharf/declcd/schema/component"
+	"github.com/kharf/declcd-platform-example/templates/core"
 	corev1 "k8s.io/api/core/v1"
 )
 
@@ -36,4 +37,12 @@ prometheusStack: component.#HelmRelease & {
 			}
 		}
 	}
+
+	patches: [
+		core.#Deployment & {
+			#Name:      "prometheus-stack-grafana"
+			#Namespace: ns.content.metadata.name
+			spec: replicas: 2
+		},
+	]
 }

@@ -28,12 +28,23 @@ import (
 	}
 }
 
-#Deployment: component.#Manifest & {
+#Deployment: appsv1.#Deployment & {
 	#Name:      string
 	#Namespace: string
-	content: appsv1.#Deployment & {
-		apiVersion: string | *"apps/v1"
-		kind:       "Deployment"
+
+	apiVersion: string | *"apps/v1"
+	kind:       "Deployment"
+	metadata: {
+		name:      #Name
+		namespace: #Namespace
+	}
+}
+
+#DeploymentManifest: component.#Manifest & {
+	#Name:      string
+	#Namespace: string
+
+	content: #Deployment & {
 		metadata: {
 			name:      #Name
 			namespace: #Namespace
