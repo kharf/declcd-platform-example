@@ -6,7 +6,7 @@ import (
 
 _primaryLabels: {
 	"\(_controlPlaneKey)": "project-controller-primary"
-	"\(_shardKey)":        "primary"
+	"\(_shardKey)":   "primary"
 }
 
 primaryServiceAccount: component.#Manifest & {
@@ -153,7 +153,7 @@ primaryProjectControllerDeployment: component.#Manifest & {
 		}
 		spec: {
 			selector: matchLabels: _primaryLabels
-			replicas: 2
+			replicas: 1
 			template: {
 				metadata: {
 					labels: _primaryLabels
@@ -201,7 +201,7 @@ primaryProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-primary"
-							image: "ghcr.io/kharf/declcd:0.24.4"
+							image: "ghcr.io/kharf/declcd:0.24.6-dev.1"
 							command: [
 								"/controller",
 							]
