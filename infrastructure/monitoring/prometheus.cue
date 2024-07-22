@@ -4,6 +4,7 @@ import (
 	"github.com/kharf/declcd/schema/component"
 	"github.com/kharf/declcd-platform-example/templates/core"
 	corev1 "k8s.io/api/core/v1"
+	"k8s.io/api/autoscaling/v2"
 )
 
 ns: component.#Manifest & {
@@ -11,6 +12,36 @@ ns: component.#Manifest & {
 		apiVersion: "v1"
 		kind:       "Namespace"
 		metadata: name: "monitoring"
+	}
+}
+
+hpa: component.#Manifest & {
+	content: v2.#HorizontalPodAutoscaler & {
+		apiVersion: "autoscaling/v2"
+		kind:       "HorizontalPodAutoscaler"
+		metadata: {
+			name:      "prometheus-stack-grafana"
+			namespace: ns.content.metadata.name
+		}
+		spec: {
+			scaleTargetRef: {
+				apiVersion: "apps/v1"
+				kind:       "Deployment"
+				name:       "prometheus-stack-grafana"
+			}
+			minReplicas: 3
+			maxReplicas: 10
+			metrics: [{
+				type: "Resource"
+				resource: {
+					name: "cpu"
+					target: {
+						type:               "Utilization"
+						averageUtilization: 50
+					}
+				}
+			}]
+		}
 	}
 }
 
