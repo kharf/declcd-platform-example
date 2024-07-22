@@ -63,7 +63,7 @@ import (
 		verbs: [...string]
 	}]
 	content: {
-		apiVersion: "rbac.authorization.k8s.io/v1"
+		apiVersion: string | *"rbac.authorization.k8s.io/v1"
 		kind:       "Role"
 		metadata: {
 			name:      #Name
