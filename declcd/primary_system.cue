@@ -6,7 +6,7 @@ import (
 
 _primaryLabels: {
 	"\(_controlPlaneKey)": "project-controller-primary"
-	"\(_shardKey)":        "primary"
+	"\(_shardKey)":   "primary"
 }
 
 primaryServiceAccount: component.#Manifest & {
