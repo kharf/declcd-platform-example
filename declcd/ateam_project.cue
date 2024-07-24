@@ -32,7 +32,7 @@ ateam: component.#Manifest & {
 			branch:              "main"
 			serviceAccountName:  ateamTenantServiceAccount.#Name
 			pullIntervalSeconds: 30
-			suspend:             true
+			suspend:             false
 			url:                 "git@github.com:kharf/declcd-platform-team-a-example.git"
 		}
 	}
