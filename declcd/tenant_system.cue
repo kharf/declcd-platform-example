@@ -6,7 +6,7 @@ import (
 
 _tenantLabels: {
 	"\(_controlPlaneKey)": "project-controller-tenant"
-	"\(_shardKey)":   "tenant"
+	"\(_shardKey)":        "tenant"
 }
 
 tenantServiceAccount: component.#Manifest & {
@@ -201,7 +201,7 @@ tenantProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-tenant"
-							image: "ghcr.io/kharf/declcd:0.24.6-dev.3"
+							image: "ghcr.io/kharf/declcd:0.24.9"
 							command: [
 								"/controller",
 							]

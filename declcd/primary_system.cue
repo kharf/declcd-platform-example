@@ -6,7 +6,7 @@ import (
 
 _primaryLabels: {
 	"\(_controlPlaneKey)": "project-controller-primary"
-	"\(_shardKey)":   "primary"
+	"\(_shardKey)":        "primary"
 }
 
 primaryServiceAccount: component.#Manifest & {
@@ -201,7 +201,7 @@ primaryProjectControllerDeployment: component.#Manifest & {
 					containers: [
 						{
 							name:  "project-controller-primary"
-							image: "ghcr.io/kharf/declcd:0.24.6-dev.3"
+							image: "ghcr.io/kharf/declcd:0.24.9"
 							command: [
 								"/controller",
 							]
